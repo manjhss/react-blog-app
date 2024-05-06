@@ -15,7 +15,7 @@ const Header = () => {
 			active: status,
 		},
 		{
-			name: "All Posts",
+			name: "Posts",
 			slug: "/all-posts",
 			active: status,
 		},

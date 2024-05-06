@@ -1,19 +1,17 @@
+import React from "react";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button } from "./ui/button";
 
 const HamburgerMenu = ({ className }) => {
-	const { status, userData } = useSelector((state) => state.auth);
+	const { status } = useSelector((state) => state.auth);
+	const navigate = useNavigate();
 
 	const navItems = [
 		{
@@ -22,7 +20,7 @@ const HamburgerMenu = ({ className }) => {
 			active: status,
 		},
 		{
-			name: "All Posts",
+			name: "Posts",
 			slug: "/all-posts",
 			active: status,
 		},
@@ -39,22 +37,19 @@ const HamburgerMenu = ({ className }) => {
 				<DropdownMenuTrigger asChild>
 					<Button variant="outline">Menu</Button>
 				</DropdownMenuTrigger>
-
-				<DropdownMenuContent className="w-40 p-2 border rounded-lg dark:bg-black bg-white absolute -right-8">
-					<DropdownMenuLabel className="text-lg">
-						{userData.name}
-					</DropdownMenuLabel>
-					<DropdownMenuSeparator />
-					<DropdownMenuGroup className="mt-2">
-						{navItems.map((item, index) => (
-							<DropdownMenuItem
-								className="pl-2 py-1 rounded-md cursor-pointer"
-								key={index}
-							>
-								<Link to={item.slug}>{item.name}</Link>
-							</DropdownMenuItem>
-						))}
-					</DropdownMenuGroup>
+				<DropdownMenuContent
+					className="p-1 rounded-md mt-1 border dark:bg-popover bg-white"
+					align=""
+				>
+					{navItems.map((item, index) => (
+						<DropdownMenuItem
+							key={index}
+							onClick={() => navigate(item.slug)}
+							className="px-2 py-1 pr-12 rounded cursor-pointer hover:bg-accent text-sm"
+						>
+							{item.name}
+						</DropdownMenuItem>
+					))}
 				</DropdownMenuContent>
 			</DropdownMenu>
 		</div>
