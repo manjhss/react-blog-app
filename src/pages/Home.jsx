@@ -1,38 +1,13 @@
-import React, { useEffect } from "react";
-import appwriteService from "../appwrite/config";
+import React from "react";
+
 import { Container, PostCard } from "../components/index";
-import { useDispatch, useSelector } from "react-redux";
-import {
-	fetchPostsStart,
-	fetchPostsSuccess,
-	fetchPostsFailure,
-} from "../store/postSlice";
+import { useSelector } from "react-redux";
 
 const Home = () => {
 	const { status, userData } = useSelector((state) => state.auth);
 	const { posts } = useSelector((state) => state.posts);
 
 	const userPosts = posts.filter((post) => post.userId === userData.$id);
-
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		if (status && posts.length === 0) {
-			dispatch(fetchPostsStart());
-
-			appwriteService
-				.getPosts()
-				.then((posts) => {
-					if (posts) {
-						dispatch(fetchPostsSuccess(posts.documents));
-					}
-				})
-				.catch((error) => {
-					console.error(error.message);
-					dispatch(fetchPostsFailure(error.message));
-				});
-		}
-	}, []);
 
 	if (!status) {
 		return (

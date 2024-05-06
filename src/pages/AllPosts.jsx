@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, PostCard } from "../components/index";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import appwriteService from "../appwrite/config";
+import {
+	fetchPostsStart,
+	fetchPostsSuccess,
+	fetchPostsFailure,
+} from "../store/postSlice";
 
 const AllPosts = () => {
-	const { posts } = useSelector((state) => state.posts);
+	const { status } = useSelector((state) => state.auth);
+	const { loading } = useSelector((state) => state.posts);
+
+	const dispatch = useDispatch();
+
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		if (status) {
+			dispatch(fetchPostsStart());
+
+			appwriteService
+				.getPosts()
+				.then((posts) => {
+					if (posts) {
+						setPosts(posts.documents);
+						dispatch(fetchPostsSuccess(posts.documents));
+					}
+				})
+				.catch((error) => {
+					console.error(error.message);
+					dispatch(fetchPostsFailure(error.message));
+				});
+		}
+	}, []);
 
 	if (posts.length === 0) {
 		return (
 			<div className="flex h-screen items-center justify-center text-xl font-medium">
-				Add Post ✍️
+				{loading ? "Loading..." : "Post not found 😟"}
 			</div>
 		);
 	}

@@ -28,7 +28,7 @@ const Login = () => {
 					dispatch(authLogin(userData));
 				}
 
-				navigate("/");
+				navigate("/all-posts");
 			}
 		} catch (error) {
 			setError(error.message);

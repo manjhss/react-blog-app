@@ -6,19 +6,19 @@ const Protected = ({ children, authentication = true }) => {
 	const navigate = useNavigate();
 
 	const [loader, setLoader] = useState(true);
-	const authStatus = useSelector((state) => state.auth.status);
+	const { status } = useSelector((state) => state.auth);
 
 	useEffect(() => {
 		// TODO: make it more easy to understand
 
-		if (authentication && authStatus !== authentication) {
+		if (authentication && status !== authentication) {
 			navigate("/login");
-		} else if (!authentication && authStatus !== authentication) {
-			navigate("/");
+		} else if (!authentication && status !== authentication) {
+			navigate("/all-posts");
 		}
 
 		setLoader(false);
-	}, [authStatus, navigate, authentication]);
+	}, [status, navigate, authentication]);
 
 	return loader ? <h1>Loading...</h1> : <>{children}</>;
 };
