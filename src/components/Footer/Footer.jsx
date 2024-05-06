@@ -34,11 +34,12 @@ const Footer = () => {
 					"flex gap-2 flex-col sm:flex-row sm:gap-6 justify-center items-center"
 				}
 			>
-				<div className="text-2xl flex gap-6 font-medium">
-					<span>&copy;</span> manjhss <span>/</span>
+				<div className="hidden text-2xl sm:flex gap-6 font-medium">
+					<span>&copy;</span> manjhss
 				</div>
 
 				<ul className="flex justify-center items-center gap-6">
+					<li className="text-2xl flex gap-6 font-medium">/</li>
 					{navItems.map((item, index) => (
 						<li key={index} className="flex">
 							<SocialLinkButton url={item.url}>
