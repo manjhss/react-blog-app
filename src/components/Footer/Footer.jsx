@@ -29,12 +29,16 @@ const Footer = () => {
 
 	return (
 		<footer className="py-4">
-			<Container>
-				<ul className="flex justify-center items-center gap-6">
-					<li className="text-2xl flex gap-4 font-medium">
-						manjhss <span>/</span>
-					</li>
+			<Container
+				className={
+					"flex gap-2 flex-col sm:flex-row sm:gap-6 justify-center items-center"
+				}
+			>
+				<div className="text-2xl flex gap-6 font-medium">
+					<span>&copy;</span> manjhss <span>/</span>
+				</div>
 
+				<ul className="flex justify-center items-center gap-6">
 					{navItems.map((item, index) => (
 						<li key={index} className="flex">
 							<SocialLinkButton url={item.url}>

@@ -46,15 +46,19 @@ export default function Post() {
 	return post ? (
 		<div>
 			<Container>
-				<div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+				<div className="w-full flex justify-center mb-4 border rounded-xl p-2">
 					<img
 						src={appwriteService.getFilePreview(post.featuredImage)}
 						alt={post.title}
 						className="rounded-xl"
 					/>
+				</div>
+
+				<div className="w-full flex justify-between items-center mb-6">
+					<h1 className="text-2xl font-bold">{post.title}</h1>
 
 					{isAuthor && (
-						<div className="absolute right-6 top-6 flex gap-2">
+						<div className="top-6 flex gap-2">
 							<Link to={`/edit-post/${post.$id}`}>
 								<Button>Edit</Button>
 							</Link>
@@ -64,10 +68,6 @@ export default function Post() {
 							</Button>
 						</div>
 					)}
-				</div>
-
-				<div className="w-full mb-6">
-					<h1 className="text-2xl font-bold">{post.title}</h1>
 				</div>
 
 				<div className="browser-css">{parse(post.content)}</div>

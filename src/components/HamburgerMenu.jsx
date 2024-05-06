@@ -40,12 +40,17 @@ const HamburgerMenu = ({ className }) => {
 					<Button variant="outline">Menu</Button>
 				</DropdownMenuTrigger>
 
-				<DropdownMenuContent className="w-40 p-2 border rounded-lg">
-					<DropdownMenuLabel>{userData.email}</DropdownMenuLabel>
+				<DropdownMenuContent className="w-40 p-2 border rounded-lg dark:bg-black bg-white absolute -right-8">
+					<DropdownMenuLabel className="text-lg">
+						{userData.name}
+					</DropdownMenuLabel>
 					<DropdownMenuSeparator />
 					<DropdownMenuGroup className="mt-2">
 						{navItems.map((item, index) => (
-							<DropdownMenuItem className="" key={index}>
+							<DropdownMenuItem
+								className="pl-2 py-1 rounded-md cursor-pointer"
+								key={index}
+							>
 								<Link to={item.slug}>{item.name}</Link>
 							</DropdownMenuItem>
 						))}

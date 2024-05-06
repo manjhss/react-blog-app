@@ -50,12 +50,10 @@ const Home = () => {
 		);
 	}
 
-	console.log(posts[0]);
-
 	return (
 		<div>
 			<Container>
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
 					{userPosts?.map((post) => (
 						<div key={post.$id}>
 							<PostCard

@@ -16,7 +16,7 @@ const AllPosts = () => {
 	return (
 		<div>
 			<Container>
-				<div className="grid grid-cols-3 gap-2">
+				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
 					{posts.map((post) => (
 						<div key={post.$id}>
 							<PostCard
