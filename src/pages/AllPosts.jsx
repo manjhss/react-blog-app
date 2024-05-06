@@ -9,45 +9,31 @@ import {
 } from "../store/postSlice";
 
 const AllPosts = () => {
-	const { status } = useSelector((state) => state.auth);
-	const { loading } = useSelector((state) => state.posts);
+	const { posts: persistedPosts } = useSelector((state) => state.posts);
 
 	const dispatch = useDispatch();
 
-	const [posts, setPosts] = useState([]);
-
 	useEffect(() => {
-		if (status) {
-			dispatch(fetchPostsStart());
+		dispatch(fetchPostsStart());
 
-			appwriteService
-				.getPosts()
-				.then((posts) => {
-					if (posts) {
-						setPosts(posts.documents);
-						dispatch(fetchPostsSuccess(posts.documents));
-					}
-				})
-				.catch((error) => {
-					console.error(error.message);
-					dispatch(fetchPostsFailure(error.message));
-				});
-		}
+		appwriteService
+			.getPosts()
+			.then((posts) => {
+				if (posts) {
+					dispatch(fetchPostsSuccess(posts.documents));
+				}
+			})
+			.catch((error) => {
+				console.error(error.message);
+				dispatch(fetchPostsFailure(error.message));
+			});
 	}, []);
-
-	if (posts.length === 0) {
-		return (
-			<div className="flex h-screen items-center justify-center text-xl font-medium">
-				{loading ? "Loading..." : "Post not found 😟"}
-			</div>
-		);
-	}
 
 	return (
 		<div>
 			<Container>
 				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
-					{posts.map((post) => (
+					{persistedPosts.map((post) => (
 						<div key={post.$id}>
 							<PostCard
 								id={post.$id}
