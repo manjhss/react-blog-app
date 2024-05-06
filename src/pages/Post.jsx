@@ -50,7 +50,7 @@ export default function Post() {
 					<img
 						src={appwriteService.getFilePreview(post.featuredImage)}
 						alt={post.title}
-						className="rounded-xl"
+						className="rounded-xl sm:h-80"
 					/>
 				</div>
 
