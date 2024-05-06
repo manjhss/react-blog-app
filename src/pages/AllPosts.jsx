@@ -20,7 +20,27 @@ const AllPosts = () => {
 			.getPosts()
 			.then((posts) => {
 				if (posts) {
-					dispatch(fetchPostsSuccess(posts.documents));
+					let extractedPosts = posts.documents.map((post) => {
+						const {
+							$id,
+							title,
+							content,
+							featuredImage,
+							status,
+							userId,
+						} = post;
+
+						return {
+							$id,
+							title,
+							content,
+							featuredImage,
+							status,
+							userId,
+						};
+					});
+
+					dispatch(fetchPostsSuccess(extractedPosts));
 				}
 			})
 			.catch((error) => {
