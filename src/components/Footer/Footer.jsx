@@ -15,7 +15,7 @@ const Footer = () => {
 		},
 		{
 			icon: Mail,
-			url: "",
+			url: "https://forms.gle/yKN5hXUxzd9bPrKb7",
 		},
 		{
 			icon: Twitter,

@@ -29,7 +29,7 @@ const Header = () => {
 	return (
 		<header>
 			<Container>
-				<nav className="py-4 flex flex-wrap justify-between items-center">
+				<nav className="py-4 flex gap-2 flex-wrap justify-between items-center">
 					<div>
 						<Link to="/">
 							<Logo />
