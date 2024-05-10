@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
+import authService from "./appwrite/auth";
 
 function App() {
 	const [loading, setLoading] = useState(true);
 	const dispatch = useDispatch();
 
-	const { status, userData } = useSelector((state) => state.auth);
+	const { status } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		try {
-			if (status) {
-				dispatch(login(userData));
-			} else {
-				dispatch(logout());
-			}
-		} catch (error) {
-			console.log(error);
+		if (!status) {
+			authService.getCurrentUser().then((userData) => {
+				if (userData) {
+					dispatch(login(userData));
+				} else {
+					dispatch(logout());
+				}
+			});
 		}
 
 		setLoading(false);

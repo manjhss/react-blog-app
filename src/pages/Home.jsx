@@ -7,7 +7,7 @@ const Home = () => {
 	const { status, userData } = useSelector((state) => state.auth);
 	const { posts } = useSelector((state) => state.posts);
 
-	const userPosts = posts.filter((post) => post.userId === userData.$id);
+	const userPosts = posts?.filter((post) => post.userId === userData.$id);
 
 	if (!status) {
 		return (

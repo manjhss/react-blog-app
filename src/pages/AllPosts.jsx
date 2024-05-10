@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Container, PostCard } from "../components/index";
 import { useDispatch, useSelector } from "react-redux";
 import appwriteService from "../appwrite/config";
@@ -49,11 +49,19 @@ const AllPosts = () => {
 			});
 	}, []);
 
+	if (persistedPosts.length === 0) {
+		return (
+			<div className="flex h-screen items-center justify-center text-xl font-medium">
+				No Post Found 🐸
+			</div>
+		);
+	}
+
 	return (
 		<div>
 			<Container>
 				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
-					{persistedPosts.map((post) => (
+					{persistedPosts?.map((post) => (
 						<div key={post.$id}>
 							<PostCard
 								id={post.$id}

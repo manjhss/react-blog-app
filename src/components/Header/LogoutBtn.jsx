@@ -12,8 +12,8 @@ const LogoutBtn = () => {
 		authService
 			.logout()
 			.then(() => {
-				dispatch(logout());
 				dispatch(onLogoutPost());
+				dispatch(logout());
 			})
 			.catch((error) => {
 				console.error(error);

@@ -54,7 +54,7 @@ export default function Post() {
 					/>
 				</div>
 
-				<div className="w-full flex justify-between items-center mb-6">
+				<div className="w-full flex flex-wrap gap-2 justify-between items-center mb-6">
 					<h1 className="text-2xl font-bold">{post.title}</h1>
 
 					{isAuthor && (

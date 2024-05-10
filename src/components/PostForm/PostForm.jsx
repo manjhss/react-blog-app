@@ -160,12 +160,13 @@ const PostForm = ({ post }) => {
 						/>
 
 						{post && (
-							<div>
+							<div className="h-60 w-60 flex items-center justify-center">
 								<img
 									src={appwriteService.getFilePreview(
 										post.featuredImage
 									)}
 									alt={post.title}
+									className="rounded-lg"
 								/>
 							</div>
 						)}

@@ -7,11 +7,10 @@ const PostCard = ({ id, title, featuredImage }) => {
 	return (
 		<Link to={`/post/${id}`}>
 			<Card className="bg-transparent flex flex-col items-center overflow-hidden">
-				<div className="h-60 w-60 flex items-center justify-center overflow-hidden">
+				<div className="h-60 w-60 flex items-center justify-center">
 					<img
 						src={appwriteService.getFilePreview(featuredImage)}
 						alt={title}
-						className="rounded-lg"
 					/>
 				</div>
 

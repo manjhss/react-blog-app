@@ -10,7 +10,7 @@ const Header = () => {
 
 	const navItems = [
 		{
-			name: "Home",
+			name: "Mine",
 			slug: "/",
 			active: status,
 		},
@@ -29,7 +29,7 @@ const Header = () => {
 	return (
 		<header>
 			<Container>
-				<nav className="py-4 flex justify-between items-center">
+				<nav className="py-4 flex flex-wrap justify-between items-center">
 					<div>
 						<Link to="/">
 							<Logo />
