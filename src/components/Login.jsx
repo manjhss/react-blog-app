@@ -33,7 +33,6 @@ const Login = () => {
 			}
 		} catch (error) {
 			setError(error.message);
-			console.log(error);
 		}
 	};
 
@@ -65,9 +64,9 @@ const Login = () => {
 				/>
 
 				{error && (
-					<Button variant="destructive" className="w-full">
+					<button className="px-4 py-2 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 rounded-md text-sm font-medium">
 						{error}
-					</Button>
+					</button>
 				)}
 
 				<Button type="submit" className="w-full">
