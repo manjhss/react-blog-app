@@ -20,7 +20,7 @@ const AllPosts = () => {
 			.getPosts()
 			.then((posts) => {
 				if (posts) {
-					let extractedPosts = posts.documents.map((post) => {
+					let extractedPosts = posts.documents?.map((post) => {
 						const {
 							$id,
 							title,
@@ -44,7 +44,6 @@ const AllPosts = () => {
 				}
 			})
 			.catch((error) => {
-				console.error(error.message);
 				dispatch(fetchPostsFailure(error.message));
 			});
 	}, []);
