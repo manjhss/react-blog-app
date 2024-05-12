@@ -6,8 +6,8 @@ import appwriteService from "../appwrite/config.js";
 const PostCard = ({ id, title, featuredImage }) => {
 	return (
 		<Link to={`/post/${id}`}>
-			<Card className="bg-transparent flex flex-col items-center overflow-hidden">
-				<div className="h-60 w-60 flex items-center justify-center">
+			<Card className="bg-transparent flex flex-col items-center">
+				<div className="h-60 w-60 flex items-center justify-center overflow-hidden">
 					<img
 						src={appwriteService.getFilePreview(featuredImage)}
 						alt={title}

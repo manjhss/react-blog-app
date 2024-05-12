@@ -49,7 +49,7 @@ const AllPosts = () => {
 			});
 	}, []);
 
-	if (persistedPosts.length === 0) {
+	if (persistedPosts?.length === 0) {
 		return (
 			<div className="flex h-screen items-center justify-center text-xl font-medium">
 				No Post Found 🐸
